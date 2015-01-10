@@ -18,6 +18,7 @@ class ViewController: UIViewController
     @IBOutlet weak var splitBillTextField: UITextField!
     @IBOutlet weak var splitAmountLabel: UILabel!
 
+    weak var defaultTipPercentages: NSArray!
 
     override func viewDidLoad()
     {
@@ -26,6 +27,15 @@ class ViewController: UIViewController
         // Initialize default values
         tipAmountLabel.text = "$0.00"
         totalAmountLabel.text = "$0.00"
+        splitAmountLabel.text = "$0.00"
+    }
+
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+
+        // Get the default values from the settings VC
+        updateTipSegmentedControl(getDefaultTipPercentage())
     }
 
     // IBActions
@@ -48,5 +58,35 @@ class ViewController: UIViewController
         view.endEditing(true)
     }
 
+    @IBAction func onSplitBillTextFieldChanged(sender: AnyObject)
+    {
+        // TODO: refactor repeated code
+        var tipPercentages = [0.18, 0.2, 0.22]
+        var tipPercentage = tipPercentages[tipSegmentedControl.selectedSegmentIndex]
+
+        var billAmount = (billTextField.text as NSString).doubleValue
+        var tip = billAmount * tipPercentage
+        var total = billAmount + tip
+
+        var splitAmount = total / (splitBillTextField.text as NSString).doubleValue
+
+        // Create default text to $0.00
+        if splitBillTextField.text == ""
+        {
+            splitAmountLabel.text = "$0.00"
+        }
+        else
+        {
+            splitAmountLabel.text = String(format:"$%.2f", splitAmount)
+        }
+    }
+
+
+    // Helper Methods
+    func updateTipSegmentedControl(updatedPercentage: Double)
+    {
+        var defaultTipPercentages = [0.18, 0.2, 0.22]
+        tipSegmentedControl.selectedSegmentIndex = find(defaultTipPercentages, updatedPercentage)!
+    }
 }
 
