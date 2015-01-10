@@ -59,6 +59,7 @@
 		90D499881A61C86F003FD87E = {
 			isa = PBXGroup;
 			children = (
+				90D4999A1A61C86F003FD87E /* Main.storyboard */,
 				90D499931A61C86F003FD87E /* Tipster */,
 				90D499A91A61C86F003FD87E /* TipsterTests */,
 				90D499921A61C86F003FD87E /* Products */,
@@ -78,8 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				90D499961A61C86F003FD87E /* AppDelegate.swift */,
-				90D499981A61C86F003FD87E /* ViewController.swift */,
-				90D4999A1A61C86F003FD87E /* Main.storyboard */,
+				90D499B61A61D456003FD87E /* View Controllers */,
 				90D4999D1A61C86F003FD87E /* Images.xcassets */,
 				90D4999F1A61C86F003FD87E /* LaunchScreen.xib */,
 				90D499941A61C86F003FD87E /* Supporting Files */,
@@ -110,6 +110,14 @@
 				90D499AB1A61C86F003FD87E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		90D499B61A61D456003FD87E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				90D499981A61C86F003FD87E /* ViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +250,7 @@
 				90D4999B1A61C86F003FD87E /* Base */,
 			);
 			name = Main.storyboard;
+			path = Tipster;
 			sourceTree = "<group>";
 		};
 		90D4999F1A61C86F003FD87E /* LaunchScreen.xib */ = {
