@@ -8,13 +8,45 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController
+{
+    // Properties
+    @IBOutlet weak var billTextField: UITextField!
+    @IBOutlet weak var tipAmountLabel: UILabel!
+    @IBOutlet weak var tipSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var totalAmountLabel: UILabel!
+    @IBOutlet weak var splitBillTextField: UITextField!
+    @IBOutlet weak var splitAmountLabel: UILabel!
 
-    override func viewDidLoad() {
+
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // Initialize default values
+        tipAmountLabel.text = "$0.00"
+        totalAmountLabel.text = "$0.00"
     }
 
+    // IBActions
+    @IBAction func onEditingChanged(sender: AnyObject)
+    {
+        // Get the tip percentage based on the segmented control
+        var tipPercentages = [0.18, 0.2, 0.22]
+        var tipPercentage = tipPercentages[tipSegmentedControl.selectedSegmentIndex]
+
+        var billAmount = (billTextField.text as NSString).doubleValue
+        var tip = billAmount * tipPercentage
+        var total = billAmount + tip
+
+        tipAmountLabel.text = String(format:"$%.2f", tip)
+        totalAmountLabel.text = String(format:"$%.2f", total)
+    }
+
+    @IBAction func onTap(sender: AnyObject)
+    {
+        view.endEditing(true)
+    }
 
 }
 
