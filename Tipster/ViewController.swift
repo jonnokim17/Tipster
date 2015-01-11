@@ -34,7 +34,7 @@ class ViewController: UIViewController
     {
         super.viewWillAppear(animated)
 
-        // Check to see if defaultTipPercentage exists
+        // Check to see if defaultTipPercentage exists for initial launch
         if getDefaultTipPercentage() == 0
         {
             updateTipSegmentedControl(0.18)
