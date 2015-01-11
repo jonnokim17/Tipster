@@ -34,8 +34,16 @@ class ViewController: UIViewController
     {
         super.viewWillAppear(animated)
 
-        // Get the default values from the settings VC
-        updateTipSegmentedControl(getDefaultTipPercentage())
+        // Check to see if defaultTipPercentage exists
+        if getDefaultTipPercentage() == 0
+        {
+            updateTipSegmentedControl(0.18)
+        }
+        else
+        {
+            updateTipSegmentedControl(getDefaultTipPercentage())
+        }
+
     }
 
     // IBActions
